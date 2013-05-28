@@ -13,13 +13,14 @@ if( !defined( 'YOURLS_ABSPATH' ) ) die();
 
 require_once EDITIONLOGGER_KLOGGER_PATH . '/src/KLogger.php';
 
+
 function editionlogger_environment_check() {
 	$required_params = array(
 		'EDITIONLOGGER_KLOGGER_PATH', // path to KLogger
 		'EDITIONLOGGER_LOGFILE',      // File to log
 	);
 
-	foreach ($required_params as $pname) {
+	foreach ( $required_params as $pname ) {
 		if ( !defined( $pname ) ) {
 			$message = 'Missing defined parameter '.$pname.' in plugin '. $thisplugname;
 			error_log( $message );
@@ -29,6 +30,7 @@ function editionlogger_environment_check() {
 
 	return true;
 }
+
 
 function editionlogger_insert_link ( $args ) {
 	editionlogger_environment_check();
@@ -42,7 +44,8 @@ function editionlogger_insert_link ( $args ) {
 	}
 }
 
-function editionlogger_delete_link ($args) {
+
+function editionlogger_delete_link ( $args ) {
 	editionlogger_environment_check();
 	$keyword = $args[0];
 
@@ -50,7 +53,8 @@ function editionlogger_delete_link ($args) {
 	$log->LogInfo("[".YOURLS_USER."] Link deleted: ( $keyword )");
 }
 
-function editionlogger_edit_link ($args) {
+
+function editionlogger_edit_link ( $args ) {
 	editionlogger_environment_check();
 	$url                   = $args[0];
 	$keyword               = $args[1];
@@ -64,6 +68,7 @@ function editionlogger_edit_link ($args) {
 		$log->LogInfo( "[".YOURLS_USER."] Link edited: $keyword -> ( $newkeyword, $url )" );
 	}
 }
+
 
 yourls_add_action( 'insert_link',   'editionlogger_insert_link' );
 
