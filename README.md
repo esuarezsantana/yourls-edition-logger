@@ -15,6 +15,7 @@ Installation
  * Upload contents of ziped folder to `kloger` folder.
  * Open `user/config.php` to edit.
  * Add the following to the end of the file:
+
     ```php
     /** Set location of klogger code **/
     define( 'EDITIONLOGGER_KLOGGER_PATH', 'klogger' );
