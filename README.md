@@ -11,8 +11,8 @@ Installation
  * Create a new folder in `user/plugins` named `edition-logger`.
  * Upload contents of zipped folder to `edition-logger` folder.
  * Download and extract zip for [KLogger](https://github.com/katzgrau/KLogger).
- * Create a new folder named `kloger` in `edition-logger` folder.
- * Upload contents of ziped folder to `kloger` folder.
+ * Create a new folder named `klogger` in `edition-logger` folder.
+ * Upload contents of zipped folder to `klogger` folder.
  * Open `user/config.php` to edit.
  * Add the following to the end of the file:
 
