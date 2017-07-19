@@ -1,6 +1,8 @@
 yourls-edition-logger
 =====================
 
+WARNING: This plugin is not mantained anymore.
+
 This [yourls](http://yourls.org/) plugin logs to a file every url insertion, deletion, or modification. So that, it provides traceability of users' actions allowing an open edition policy.
 
 
