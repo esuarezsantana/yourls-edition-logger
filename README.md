@@ -18,7 +18,7 @@ Installation
 
     ```php
     /** Set location of logs folder **/
-    define( 'EDITIONLOGGER_LOGFILE', '../logs' ); //this will create a new folder called logs in the root directory
+    define( 'EDITIONLOGGER_LOGFILE', dirname( __DIR__ ).'/logs' ); // This will create a new folder called logs in the root directory
     ```
 
 For more information, follow me at [http://e.suarezsantana.com/](http://e.suarezsantana.com/).
