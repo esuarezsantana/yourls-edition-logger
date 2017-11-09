@@ -11,8 +11,7 @@ Author URI: http://e.suarezsantana.com/
 // No direct call
 if( !defined( 'YOURLS_ABSPATH' ) ) die();
 
-require_once EDITIONLOGGER_KLOGGER_PATH . '/src/KLogger.php';
-
+require_once 'vendor/autoload.php';
 
 function editionlogger_environment_check() {
 	$required_params = array(
@@ -39,8 +38,9 @@ function editionlogger_insert_link ( $args ) {
 	$keyword = $args[2];
 
 	if ( $insert ) {
-		$log = new KLogger ( EDITIONLOGGER_LOGFILE , KLogger::DEBUG );
-		$log->LogInfo("[".YOURLS_USER."] Link inserted: ( $keyword, $url )");
+
+		$log = new Katzgrau\KLogger\Logger ( EDITIONLOGGER_LOGFILE );
+		$log->info("[".YOURLS_USER."] Link inserted: ( $keyword, $url )");
 	}
 }
 
@@ -49,8 +49,8 @@ function editionlogger_delete_link ( $args ) {
 	editionlogger_environment_check();
 	$keyword = $args[0];
 
-	$log = new KLogger ( EDITIONLOGGER_LOGFILE , KLogger::DEBUG );
-	$log->LogInfo("[".YOURLS_USER."] Link deleted: ( $keyword )");
+	$log = new Katzgrau\KLogger\Logger ( EDITIONLOGGER_LOGFILE);
+	$log->info("[".YOURLS_USER."] Link deleted: ( $keyword )");
 }
 
 
@@ -64,8 +64,8 @@ function editionlogger_edit_link ( $args ) {
 
 	// same check as in the source
 	if ( ( !$new_url_already_there || yourls_allow_duplicate_longurls() ) && $keyword_is_ok ) {
-		$log = new KLogger ( EDITIONLOGGER_LOGFILE , KLogger::DEBUG );
-		$log->LogInfo( "[".YOURLS_USER."] Link edited: $keyword -> ( $newkeyword, $url )" );
+		$log = new Katzgrau\KLogger\Logger ( EDITIONLOGGER_LOGFILE );
+		$log->info( "[".YOURLS_USER."] Link edited: $keyword -> ( $newkeyword, $url )" );
 	}
 }
 
@@ -75,4 +75,3 @@ yourls_add_action( 'insert_link',   'editionlogger_insert_link' );
 yourls_add_action( 'delete_link',   'editionlogger_delete_link' );
 
 yourls_add_action( 'pre_edit_link', 'editionlogger_edit_link' );
-
