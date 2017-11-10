@@ -1,9 +1,9 @@
-yourls-edition-logger
+yourls-audit-log
 =====================
 
-This is a clone of the original plugin, which is not maintained anymore.
+This is a clone of the plugin named "yourls-edition-logger", which is not maintained anymore.
 
-This [yourls](http://yourls.org/) plugin logs to a file every url insertion, deletion, or modification. So that, it provides traceability of users' actions allowing an open edition policy.
+This [yourls](http://yourls.org/) plugin logs to a file most of main admin actions. It also logs every url insertion, deletion, or modification. So that, it provides traceability of users' actions allowing an open edition policy and facilitating system audits.
 
 
 Installation
@@ -20,6 +20,4 @@ Installation
     /** Set location of logs folder **/
     define( 'EDITIONLOGGER_LOGFILE', dirname( __DIR__ ).'/logs' ); // This will create a new folder called logs in the root directory
     ```
-
-For more information, follow me at [http://e.suarezsantana.com/](http://e.suarezsantana.com/).
 
