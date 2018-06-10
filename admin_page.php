@@ -51,7 +51,10 @@ HTML;
 	echo '<h3>Logs</h3>';
 	// List Log Files.
 	$count = 0;
-	foreach (glob($logfile_path_mask."*.txt") as $filename) {
+	$log_files = glob($logfile_path_mask."*.txt");
+	$log_files = array_reverse($log_files);
+	
+	foreach ($log_files as $filename) {
 		
 		$count++;
 	
