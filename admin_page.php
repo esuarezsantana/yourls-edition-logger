@@ -51,22 +51,45 @@ HTML;
 	echo '<h3>Logs</h3>';
 	// List Log Files.
 	$count = 0;
+	$content_list = array();
 	$log_files = glob($logfile_path_mask."*.txt");
 	$log_files = array_reverse($log_files);
 	
 	foreach ($log_files as $filename) {
-		
 		$count++;
-	
 		echo basename($filename)." (" . filesize($filename) . " octets) <br>\n";
 		
 		if (!empty($filename) && $count < 10) {
 			$content = file_get_contents($filename);
+			$content_array = file($filename, FILE_IGNORE_NEW_LINES);
+			$content_list = array_merge($content_list, editionlogger_admin_page_get_links_from_logs($content_array));
 			
 			echo '<textarea>'.$content.'</textarea>';
 		}
+	}
+	// Export list
+	#echo var_export(array_values($content_list), false);	
 }
+
+function editionlogger_admin_page_get_links_from_logs($content_array=array()) {
 	
+	$content_array_new = array();
+	foreach ($content_array as $line) {
+		$matches = explode('Link inserted: ( ', $line);
+		#preg_match('/Link inserted: \( [a-z0-9-]*, /', $line, $matches, PREG_UNMATCHED_AS_NULL);
+		#var_dump('matches',$matches);
+		if (!empty($matches[1])) {
+			$matches = explode(', ', $matches[1]);
+			if (!empty($matches[1])) {
+				$matches = explode(' )', $matches[1]);
+				if (!empty($matches[0])) {
+					$content_array_new[] = $matches[0];
+				}
+			}
+		}
+	}
+	
+	return $content_array_new;
 }
 
 // Update option in database
